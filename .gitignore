@@ -12,6 +12,6 @@ dymosim*
 # VSCode
 .vscode
 
-!/Resources/Include/**
-!/Resources/Library/**
-!/Resources/Source/**
+!/MPC/Resources/Include/**
+!/MPC/Resources/Library/**
+!/MPC/Resources/Source/**
