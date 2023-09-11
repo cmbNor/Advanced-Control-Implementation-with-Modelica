@@ -1,0 +1,16 @@
+*.txt
+
+*.mat
+
+*.c
+
+dymosim*
+
+#Modelica backup files
+*.bak-mo
+
+# VSCode
+.vscode
+
+!/Resources/Include/**
+!/Resources/Library/**
