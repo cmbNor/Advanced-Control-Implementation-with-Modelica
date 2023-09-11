@@ -55,16 +55,6 @@ der(CA) = (F/V)*(CAf-CA)-k0*exp((-E)/(R*T))*CA;
 </h1><div><font size=\"5\">The model is based on first principal equations presented in the book named Process Dynamics and Control [1].</font></div><div><font size=\"5\"><br></font></div><div><font size=\"5\">The figure below presents the basics of the model with the temperature of the tank jacket as controllable, and measurement of the reactant temperature and concentration as the outputs.</font></div><div><font size=\"5\"><br></font></div><div><br></div>
 <img src=\"modelica://MPC/Resources/Images/CSTR.png\" width=\"600\" alt=\"CSTR\">
 
-
-
-
-
-
-
-
-
-
-
 <div><br></div><div><!--StartFragment--><div data-style=\"ieee\" data-url=\"/csl/bibtex/28feb61544e6ab3777a22e117ea8df26a/gdmcbain?formatEmbedded=true\" id=\"csl-container\">  <div class=\"csl-entry\">
     <div class=\"csl-left-margin\"><br></div><div class=\"csl-left-margin\"><br></div><div class=\"csl-left-margin\"><br></div><div class=\"csl-left-margin\"><br></div><div class=\"csl-left-margin\"><font size=\"5\">[1] D. E. Seborg, D. A. Mellichamp, and T. F. Edgar, <i>Process Dynamics and Control</i>, Third. John Wiley &amp; Sons, 2011.</font></div>
   </div>
