@@ -29,7 +29,7 @@ record NoiseGeneratorData
       // External C function call to initialize the noise generator.
     
   external "C" noiseGeneratorExternalObject = initialiseNoiseGenerator(noiseGeneratorData.range,
-                                                                           noiseGeneratorData.result)
+                                                                                                        noiseGeneratorData.result)
       
       annotation(
         IncludeDirectory = "modelica://MPC/Resources/Include/",
