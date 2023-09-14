@@ -1,0 +1,21 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"MPC.DuplicateComponents.AirHeaterWithIO","description":"USN air heater - www.http://techteach.no/air_heater/"},
+"variables":{
+"T_Out_ext":{"comment":"","kind":"state","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":21,"lineEnd":22,"colStart":3,"colEnd":72}}},
+"der(T_Out_ext)":{"comment":"","kind":"derivative","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":21,"lineEnd":22,"colStart":3,"colEnd":72}}},
+"T_amb_ext":{"comment":"","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":15,"lineEnd":19,"colStart":3,"colEnd":26}}},
+"u_ext":{"comment":"","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":13,"lineEnd":14,"colStart":3,"colEnd":74}}},
+"T_amb_ext":{"comment":"","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":15,"lineEnd":19,"colStart":3,"colEnd":26}}},
+"u_ext":{"comment":"","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":13,"lineEnd":14,"colStart":3,"colEnd":74}}},
+"Kh":{"comment":"Heater gain","kind":"constant","type":"Real","unit":"C/V","displayUnit":"","source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":11,"lineEnd":11,"colStart":3,"colEnd":61}}},
+"T_CONST":{"comment":"Time constant","kind":"constant","type":"Real","unit":"s","displayUnit":"","source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":9,"lineEnd":9,"colStart":3,"colEnd":63}}},
+"T_DELAY":{"comment":"Time delay","kind":"constant","type":"Real","unit":"s","displayUnit":"","source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":10,"lineEnd":10,"colStart":3,"colEnd":60}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"section":"initial","tag":"assign","defines":["T_Out_ext"],"uses":["T_amb_ext"],"equation":["T_amb_ext"],"source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":25,"lineEnd":25,"colStart":3,"colEnd":24}}},
+{"eqIndex":2,"section":"initial","tag":"assign","defines":["der(T_Out_ext)"],"uses":["T_Out_ext","u_ext","T_amb_ext"],"equation":["T_amb_ext / 23.0 + 0.1521739130434783 * u_ext - T_Out_ext / 23.0"],"source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":29,"lineEnd":29,"colStart":3,"colEnd":76}}},
+{"eqIndex":3,"section":"regular","tag":"assign","defines":["der(T_Out_ext)"],"uses":["T_Out_ext","u_ext","T_amb_ext"],"equation":["T_amb_ext / 23.0 + 0.1521739130434783 * delay(0, u_ext, 3.0, 3.0) - T_Out_ext / 23.0"],"source":{"info":{"file":"C:/GitHub/MPC/DuplicateComponents/AirHeaterWithIO.mo","lineStart":29,"lineEnd":29,"colStart":3,"colEnd":76}}}
+],
+"functions":[
+]
+}
