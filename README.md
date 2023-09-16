@@ -51,4 +51,5 @@ Thank you for visiting my repository! If you have any questions or feedback, ple
 -->
 
 Carl Magnus Bøe
+
 [LinkedIn Profile](https://www.linkedin.com/in/carl-magnus-b%C3%B8e/)
