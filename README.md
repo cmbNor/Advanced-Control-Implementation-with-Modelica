@@ -1,6 +1,6 @@
 # Advanced Control Implementation with Modelica
 
-This repository contains the code and resources for my master's thesis on advanced control implementations in the field of advanced control implementations in Modelica. The work presented here includes both OpenModelica and Python code developed to study and implement innovative control strategies.
+This repository contains the code and resources for my master's thesis in industrial IT and automation at the University of South East Norway, focusing on advanced control implementations in the field of Modelica. The work presented here includes both OpenModelica and Python code developed to study and implement innovative control strategies.
 
 ## Table of Contents
 - [Introduction](#introduction)
