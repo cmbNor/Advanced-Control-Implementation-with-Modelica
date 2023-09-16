@@ -22,7 +22,6 @@
 		int	max_iter;	  // Maximum number of iterations for the optimizer
     } OptimizationDataUni;
 
-
 //-------------------Initialise construct function--------------------------
 void* initialiseUniNloptInput(double xl, double x1Lb, double x1Ub, double min_cost, int n, double tol, int max_iter)
 {

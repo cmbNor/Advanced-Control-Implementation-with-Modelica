@@ -9,7 +9,6 @@
 //5. Objective function for the optimization problem
 //6. Functions Called by Modelica
 
-
 //-------------------Declare the struct--------------------------
 // Define the optimization object structure
     typedef struct {
@@ -24,7 +23,6 @@
 		double tol; //Termination tolerance
 		int	max_iter;	  // Maximum number of iterations for the optimizer
     } OptimizationDataMulti;
-
 
 //-------------------Initialise construct function Input--------------------------
 void* initialiseNloptInput(double x1, double x1Lb, double x1Ub, 
