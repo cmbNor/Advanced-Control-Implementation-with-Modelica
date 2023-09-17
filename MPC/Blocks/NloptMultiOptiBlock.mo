@@ -94,7 +94,7 @@ equation
 
 <h1>Source code called in external C source code</h1><div><br></div><div>
 <p><font size=\"5\">The source code is available at&nbsp;<span>the
-source code presented in a GitHub repository:</span></font><span><font size=\"5\">  </font><a href=\"MPC/Resources/Include/nloptMultiOptimize.c\" style=\"font-size: 11pt;\"><u>Link to source code</u></a> </span></p>
+source code presented in a GitHub repository:</span></font><span><font size=\"5\">  </font><a href=\"https://github.com/cmbNor/Advanced-Control-Implementation-with-Modelica/blob/518b4cda868148e9f8656f3995b4f0fb207a1d98/MPC/Resources/Include/nloptMultiOptimize.c\" style=\"font-size: 11pt;\"><u>Link to source code</u></a> </span></p>
 
 <h1><br></h1></body></html>"),
     Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Bitmap(extent = {{-98, -96}, {98, 96}}, fileName = "modelica://MPC/Resources/Images/PlotOfMultivariateFunction.png")}),

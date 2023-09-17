@@ -2,8 +2,8 @@ within MPC.Blocks;
 
 block NloptUniOptiBlock
   //Parameters
-  parameter Real x1Lb = -1.0 "Lower bound of x1";
-  parameter Real x1Ub = 1.0 "Upper bound of x1";
+  parameter Real x1Lb = -5.0 "Lower bound of x1";
+  parameter Real x1Ub = 5.0 "Upper bound of x1";
   parameter Integer n = 1 "Number of optimization variables";
   parameter Real Tol = 1e-6 "Optimizer termination tolerance";
   parameter Integer max_iter = 100 "Maximum number of iterations for the optimizer";

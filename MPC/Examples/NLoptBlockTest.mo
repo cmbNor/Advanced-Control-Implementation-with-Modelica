@@ -1,7 +1,7 @@
 within MPC.Examples;
 model NLoptBlockTest
   extends Modelica.Icons.Example;
-  MPC.Blocks.NloptUniOptiBlock nloptUniOptiBlock annotation(
+  MPC.Blocks.NloptUniOptiBlock nloptUniOptiBlock(x1Lb = -5.0, x1Ub = 5.0)  annotation(
     Placement(visible = true, transformation(origin = {20, 0}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
   MPC.Blocks.NloptMultiOptiBlock nloptMultiOptiBlock annotation(
     Placement(visible = true, transformation(origin = {-14, -2}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
