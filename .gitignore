@@ -12,6 +12,9 @@ dymosim*
 # VSCode
 .vscode
 
+# Jupyter notebook temp files
+.ipynb_checkpoints
+
 !/MPC/Resources/Include/**
 !/MPC/Resources/Library/**
 !/MPC/Resources/Source/**
