@@ -8,7 +8,7 @@ block NloptUniOptiBlock
   parameter Real Tol = 1e-6 "Optimizer termination tolerance";
   parameter Integer max_iter = 100 "Maximum number of iterations for the optimizer";
 
-  record OptimizationDataInput
+  record OptimizationData
     Real x1R "Optimization variable";
     Real x1LbR "Lower bound of x1";
     Real x1UbR "Upper bound of x1";
@@ -16,7 +16,7 @@ block NloptUniOptiBlock
     Integer nR "Number of optimization variables";
     Real TolR "Optimizer termination tolerance";
     Integer max_iterR "Maximum number of iterations for the optimizer";
-  end OptimizationDataInput;
+  end OptimizationData;
 
   record Summary
     Real x1 "Optimization variable";
@@ -25,18 +25,18 @@ block NloptUniOptiBlock
 
   //*_*_*_*_*_*_*_*_*_*_*_*_*---Constructor and destructor for the external object ---*_*_*_*_*_*_*_*_*_*_*_*_*_*
 
-  class NloptUnivariateEOInput
+  class NloptUnivariateEO
     extends ExternalObject;
     // Constructor for the external object.
 
     function constructor
-      output NloptUnivariateEOInput nloptUnivariateEOInput;
+      output NloptUnivariateEO nloptUnivariateEO;
       
       // Initialize the data struct for shared data between C and Modelica.
-      input OptimizationDataInput optimizationDataInput(x1R = 0, x1LbR = x1Lb, x1UbR = x1Ub, min_costR = 0, nR = n, TolR = Tol, max_iterR = max_iter);
+      input OptimizationData optimizationDataInput(x1R = 0, x1LbR = x1Lb, x1UbR = x1Ub, min_costR = 0, nR = n, TolR = Tol, max_iterR = max_iter);
 
       // External C function call to initialize the NloptUniOptimize input.
-      external "C" nloptUnivariateEOInput = initialiseUniNloptInput(optimizationDataInput.x1R, optimizationDataInput.x1LbR, optimizationDataInput.x1UbR, optimizationDataInput.min_costR, optimizationDataInput.nR, optimizationDataInput.TolR, optimizationDataInput.max_iterR) annotation(
+      external "C" nloptUnivariateEO = initialiseUniNloptInput(optimizationDataInput.x1R, optimizationDataInput.x1LbR, optimizationDataInput.x1UbR, optimizationDataInput.min_costR, optimizationDataInput.nR, optimizationDataInput.TolR, optimizationDataInput.max_iterR) annotation(
         IncludeDirectory = "modelica://Resources/Include/",
         Include = "#include \"nloptUniOptimize.c\"");
     end constructor;
@@ -44,24 +44,24 @@ block NloptUniOptiBlock
     // Destructor for the external object.
 
     function destructor
-      input NloptUnivariateEOInput nloptUnivariateEOInput;
+      input NloptUnivariateEO nloptUnivariateEO;
       // External C function call to close the NloptUniOptimize input and free up allocated memory space.
     
-      external "C" closeNloptUniInput(nloptUnivariateEOInput) annotation(
+      external "C" closeNloptUniInput(nloptUnivariateEO) annotation(
         IncludeDirectory = "modelica://Resources/Include/",
         Include = "#include \"nloptUniOptimize.c\"");
     end destructor;
     annotation(
       Documentation(info = "<html><head></head><body><div><h1>Source code called in external C source code</h1></div><div><font size=\"5\"><br></font></div><div><font size=\"5\">#include &lt;stdio.h&gt;</font></div><div><font size=\"5\">#include &lt;stdlib.h&gt;</font></div><div><font size=\"5\">#include &lt;nlopt.h&gt;</font></div><div><br></div><div><font size=\"5\">//-------------------Declare the struct--------------------------</font></div><div><font size=\"5\">// Define the optimization object structure</font></div><div><font size=\"5\">&nbsp; &nbsp; typedef struct {</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>double x1; &nbsp; &nbsp; &nbsp; &nbsp;// Optimization variable</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>double x1Lb; &nbsp; &nbsp; &nbsp;// Lower bound of x1</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>double x1Ub; &nbsp; &nbsp; &nbsp;// Upper bound of x1</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>double min_cost; &nbsp;// Minimum value of the objective function after optimization</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>int n; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// Number of optimization variables</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>double tol; &nbsp; &nbsp; &nbsp; // Termination tolerance</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>int<span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>max_iter;<span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span> &nbsp;// Maximum number of iterations for the optimizer</font></div><div><font size=\"5\">&nbsp; &nbsp; } OptimizationData;</font></div><div><font size=\"5\"><br></font></div><div><font size=\"5\">//-------------------Initialise construct function--------------------------</font></div><div><font size=\"5\">void* initialiseUniNloptInput(double xl, double x1Lb, double x1Ub, double min_cost, int n, double tol, int max_iter)</font></div><div><font size=\"5\">{</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>// Check input</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>if (x1Lb &gt; x1Ub)</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>ModelicaError(\"x1Lb must be smaller than x1Ub\");</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>if (n &lt;= 0)</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>ModelicaError(\"n must be larger than 0\");</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>if (tol &lt;= 0)</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>ModelicaError(\"tol must be larger than 0\");</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>if (max_iter &lt;= 0)</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>ModelicaError(\"max_iter must be larger than 0\");</font></div><div><font size=\"5\"><br></font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>// Allocate memory for the optimization data input</font></div><div><font size=\"5\">&nbsp; &nbsp; OptimizationData* optimizationDataInput = malloc(sizeof(OptimizationData));</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>if (optimizationDataInput == NULL)</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>ModelicaError(\"Insufficient memory to allocate optimizationDataInput\");</font></div><div><font size=\"5\"><br></font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>// Initialize the optimization data input</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>optimizationDataInput-&gt;x1 = 0;</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>optimizationDataInput-&gt;x1Lb = x1Lb;</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>optimizationDataInput-&gt;x1Ub = x1Ub;</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>optimizationDataInput-&gt;min_cost = 0;</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>optimizationDataInput-&gt;n = n;</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>optimizationDataInput-&gt;tol = tol;</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>optimizationDataInput-&gt;max_iter = max_iter;</font></div><div><font size=\"5\"><br></font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>printf(\"Initialisation of input successful! 	\");</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>return (void *)optimizationDataInput;</font></div><div><font size=\"5\">}</font></div><div><font size=\"5\"><br></font></div><div><font size=\"5\">//-------------------Close and destruct --------------------------</font></div><div><font size=\"5\">void closeNloptUniInput(void *externalObject)</font></div><div><font size=\"5\">{</font></div><div><font size=\"5\">&nbsp; &nbsp; OptimizationData* optimizationDataInput = (OptimizationData *)externalObject;</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>if(optimizationDataInput != NULL)</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>{</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span>free(optimizationDataInput);</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">		</span> &nbsp; &nbsp;printf(\"Destruction of input successful!	\");</font></div><div><font size=\"5\"><span class=\"Apple-tab-span\" style=\"white-space:pre\">	</span>}</font></div><div><font size=\"5\">}</font></div></body></html>"));
-  end NloptUnivariateEOInput;
+  end NloptUnivariateEO;
 
   //*_*_*_*_*_*_*_*_*_*_*_*_*---Modelica Function that calles the external function ---*_*_*_*_*_*_*_*_*_*_*_*_*_*
   // This function calls the external C function to perform univariate optimization.
 
   function nloptOptimizationFuncCall
     //Variables
-    input NloptUnivariateEOInput nloptUnivariateEOInput;
-    output OptimizationDataInput optimizeOut;
+    input NloptUnivariateEO nloptUnivariateEOInput;
+    output OptimizationData optimizeOut;
     //Calling the external function
   
     external "C" mainFunctionUni(nloptUnivariateEOInput, optimizeOut) annotation(
@@ -73,9 +73,9 @@ block NloptUniOptiBlock
 
   //*_*_*_*_*_*_*_*_*_*_*_*_*---MainBlock()---*_*_*_*_*_*_*_*_*_*_*_*_*_*
   // Construct the records to store the optimization results.
-  OptimizationDataInput optimizeData "Record that stores the values from the external C code";
+  OptimizationData optimizeData "Record that stores the values from the external C code";
   // Create an instance of the NloptUnivariateEOInput class.
-  NloptUnivariateEOInput nloptUnivariateEOInput = NloptUnivariateEOInput();
+  NloptUnivariateEO nloptUnivariateEOInput = NloptUnivariateEO();
   Summary summary(x1 = optimizeData.x1R, min_cost = optimizeData.min_costR);
 equation
 // Call the 'nloptOptimizationFuncCall' function to perform univariate optimization.
