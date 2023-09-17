@@ -31,10 +31,11 @@ block NloptUniOptiBlock
 
     function constructor
       output NloptUnivariateEOInput nloptUnivariateEOInput;
+      
       // Initialize the data struct for shared data between C and Modelica.
       input OptimizationDataInput optimizationDataInput(x1R = 0, x1LbR = x1Lb, x1UbR = x1Ub, min_costR = 0, nR = n, TolR = Tol, max_iterR = max_iter);
+
       // External C function call to initialize the NloptUniOptimize input.
-    
       external "C" nloptUnivariateEOInput = initialiseUniNloptInput(optimizationDataInput.x1R, optimizationDataInput.x1LbR, optimizationDataInput.x1UbR, optimizationDataInput.min_costR, optimizationDataInput.nR, optimizationDataInput.TolR, optimizationDataInput.max_iterR) annotation(
         IncludeDirectory = "modelica://Resources/Include/",
         Include = "#include \"nloptUniOptimize.c\"");
