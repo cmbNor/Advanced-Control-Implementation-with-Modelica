@@ -86,62 +86,17 @@ equation
 
 <img src=\"modelica://MPC/Resources/Images/PlotOfUnivariateFunction.png\" width=\"600\" alt=\"plot\"> 
 
-<h1>Source code called in external C source code</h1><div>
-<pre style=\"margin-top: 0px; margin-bottom: 0px;\"><font face=\"Courier New\" size=\"5\">/* This code is used to optimize the objective function using the NLOPT
- * library. 
- * The optimization problem is to find the minimum of the objective function
- * f(x) = pow(x - 3.0, 2)
- * The solution is found using the LN_COBYLA algorithm
- */
+<h1>Source code called in external C source code</h1><div><br></div><div>
+<p><font size=\"5\">The source code is available at&nbsp;<span>the
+source code presented in a GitHub repository:</span></font><span><font size=\"5\">  </font><a href=\"https://github.com/cmbNor/Advanced-Control-Implementation-with-Modelica/blob/518b4cda868148e9f8656f3995b4f0fb207a1d98/MPC/Resources/Include/nloptUniOptimize.c\" style=\"font-size: 11pt;\"><u>Link to source code</u></a> </span></p>
 
-void mainFunction(void *externalObject, void *externalObject2){
-	OptimizationData* optimizationDataInput = (OptimizationData *)externalObject;
-	OptimizationData* optimizationDataOutput = (OptimizationData *)externalObject2;
 
-// Objective function for optimization
-double objective(unsigned n, const double* x, double* grad, void* data)
-{
-	// Compute the objective value based on the input variable `x`
-	// The objective function is f(x) = pow(x - 3.0, 2)
-	double result = pow(*x - 3.0, 2);
-	return result;
-}
-	double x = 0.0;     // Set initial guess
-	
- 	// Create an NLOpt optimizer
-    nlopt_opt optimizer = nlopt_create(NLOPT_LN_COBYLA, optimizationDataInput-&gt;n); // Use the LN_COBYLA algorithm
 
-    // Set the objective function
-    nlopt_set_min_objective(optimizer, objective, NULL);
 
-    // Set lower and upper bounds for the variable
-    nlopt_set_lower_bounds(optimizer, &amp;optimizationDataInput-&gt;x1Lb);
-    nlopt_set_upper_bounds(optimizer, &amp;optimizationDataInput-&gt;x1Ub);
 
-	// Set the maximum number of iterations
-    nlopt_set_maxeval(optimizer, optimizationDataInput-&gt;max_iter);
 
-    // Optimize the problem
-    nlopt_optimize(optimizer, &amp;x, &amp;optimizationDataInput-&gt;min_cost);
 
-    // Print the optimal solution and objective value
-    printf(\"Optimal solution: %f
-\", x);
-    printf(\"Objective value: %f
-\", optimizationDataInput-&gt;min_cost);
-	
-	//Values returned as the output values back to Modelica.
-	optimizationDataOutput-&gt;x1 = x;
-	optimizationDataOutput-&gt;x1Lb = optimizationDataInput-&gt;x1Lb;
-	optimizationDataOutput-&gt;x1Ub = optimizationDataInput-&gt;x1Ub;
-	optimizationDataOutput-&gt;min_cost = optimizationDataInput-&gt;min_cost;
-	optimizationDataOutput-&gt;n = optimizationDataInput-&gt;n;
-	optimizationDataOutput-&gt;tol = optimizationDataInput-&gt;tol;
-	optimizationDataOutput-&gt;max_iter = optimizationDataInput-&gt;max_iter;
-	
-    // Destroy the optimizer
-    nlopt_destroy(optimizer);
-}</font></pre><pre style=\"margin-top: 0px; margin-bottom: 0px;\"><!--EndFragment--></pre></div>
+<pre style=\"margin-top: 0px; margin-bottom: 0px;\"><!--EndFragment--></pre></div>
 
 
 
