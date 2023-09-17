@@ -19,7 +19,7 @@
 		double min_cost;  // Minimum value of the objective function after optimization
 		int n;            // Number of optimization variables
 		double tol;       // Termination tolerance
-		int	max_iter;	  // Maximum number of iterations for the optimizer
+		int max_iter;	  // Maximum number of iterations for the optimizer
     } OptimizationDataUni;
 
 //-------------------Initialise construct function--------------------------
