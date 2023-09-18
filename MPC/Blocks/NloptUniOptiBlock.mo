@@ -20,7 +20,7 @@ block NloptUniOptiBlock
 
   record Summary
     Real x1 "Optimization variable";
-    Real min_cost "Minimum value of the objective function after optimization";
+    Real min_cost "Minimum value of the objective function after optimization_";
   end Summary;
 
   //*_*_*_*_*_*_*_*_*_*_*_*_*---Constructor and destructor for the external object ---*_*_*_*_*_*_*_*_*_*_*_*_*_*
