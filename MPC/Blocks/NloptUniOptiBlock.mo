@@ -42,7 +42,6 @@ block NloptUniOptiBlock
     end constructor;
 
     // Destructor for the external object.
-
     function destructor
       input NloptUnivariateEO nloptUnivariateEO;
       // External C function call to close the NloptUniOptimize input and free up allocated memory space.
@@ -62,8 +61,8 @@ block NloptUniOptiBlock
     //Variables
     input NloptUnivariateEO nloptUnivariateEOInput;
     output OptimizationData optimizeOut;
+    
     //Calling the external function
-  
     external "C" mainFunctionUni(nloptUnivariateEOInput, optimizeOut) annotation(
       LibraryDirectory = "modelica://MPC/Resources/Library/win64/",
       Library = "nlopt",
