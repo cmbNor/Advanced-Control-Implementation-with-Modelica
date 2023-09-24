@@ -1,6 +1,6 @@
 within MPC.Blocks;
-
 block NloptMultiOptiBlock
+
   //Parameters
   parameter Real x1Lb = -5.0 "Lower bound of x1";
   parameter Real x1Ub = 5.0 "Upper bound of x1";
@@ -9,8 +9,8 @@ block NloptMultiOptiBlock
   parameter Integer n = 2 "Number of optimization variables";
   parameter Real Tol = 1e-6 "Optimizer termination tolerance";
   parameter Integer max_iter = 101 "Maximum number of iterations for the optimizer";
+ 
   // Define record to store optimization data
-
   record OptimizationData
     Real x1R "Optimization variable";
     Real x1LbR "Lower bound of x1";
@@ -25,7 +25,6 @@ block NloptMultiOptiBlock
   end OptimizationData;
 
   // Define record to store optimization summary
-
   record Summary
     Real x1 "Optimization variable";
     Real x2 "Optimization variable";
@@ -37,8 +36,8 @@ block NloptMultiOptiBlock
 
   class NloptMultivariateEOInput
     extends ExternalObject;
-    // Constructor to initialize the external object and reserve memory space
 
+    // Constructor to initialize the external object and reserve memory space
     function constructor
       output NloptMultivariateEOInput nloptMultivariateEOInput;
       input OptimizationData optimizationData(x1R = 0.0, x1LbR = x1Lb, x1UbR = x1Ub, x2R = 0.0, x2LbR = x2Lb, x2UbR = x2Ub, min_costR = 0.0, nR = n, TolR = Tol, max_iterR = max_iter);
@@ -49,7 +48,6 @@ block NloptMultiOptiBlock
     end constructor;
 
     // Destructor to close the external object and free up allocated memory space
-
     function destructor
       input NloptMultivariateEOInput nloptMultivariateEOInput;
     
@@ -63,14 +61,12 @@ block NloptMultiOptiBlock
 
   //*_*_*_*_*_*_*_*_*_*_*_*_*---Modelica Function that calles the external function ---*_*_*_*_*_*_*_*_*_*_*_*_*_*
   // Function to call the external nloptOptimizationFuncCall
-
   function nloptOptimizationFuncCall
-    //Variables
-    //  input NloptMultivariateEOInput nloptMultivariateEOInput "External object";
+
     input NloptMultivariateEOInput nloptMultivariateEOInput;
     output OptimizationData optimizeOut;
-    // Call the external C function "mainFunctionMulti" and pass nloptMultivariateEOInput and optimizeOut as arguments
   
+    // Call the external C function "mainFunctionMulti" and pass nloptMultivariateEOInput and optimizeOut as arguments
     external "C" mainFunctionMulti(nloptMultivariateEOInput, optimizeOut) annotation(
       LibraryDirectory = "modelica://MPC/Resources/Library/win64/",
       Library = "nlopt",
@@ -80,9 +76,13 @@ block NloptMultiOptiBlock
 
   //*_*_*_*_*_*_*_*_*_*_*_*_*---MainBlock()---*_*_*_*_*_*_*_*_*_*_*_*_*_*
   // Main block where instances for the external object class are set up
+ 
   NloptMultivariateEOInput nloptMultivariateEOInput = NloptMultivariateEOInput();
+ 
   OptimizationData optimizeData "Record that stores the values from the external C code";
+  
   Summary summary(x1 = optimizeData.x1R, x2 = optimizeData.x2R, min_cost = optimizeData.min_costR) "Record that summarizes the most relevant variables";
+
 equation
 // Call nloptOptimizationFuncCall and store the result in optimizeData
   optimizeData = nloptOptimizationFuncCall(nloptMultivariateEOInput);
@@ -99,4 +99,5 @@ source code presented in a GitHub repository:</span></font><span><font size=\"5\
 <h1><br></h1></body></html>"),
     Icon(coordinateSystem(extent = {{-100, -100}, {100, 100}}), graphics = {Bitmap(extent = {{-98, -96}, {98, 96}}, fileName = "modelica://MPC/Resources/Images/PlotOfMultivariateFunction.png")}),
     experiment(StartTime = 0, StopTime = 1, Tolerance = 1e-06, Interval = 0.002));
+
 end NloptMultiOptiBlock;
