@@ -86,15 +86,17 @@ double objective(unsigned n, const double *x, double *grad, void *data)
 {
     // Compute the cost function (e.g., quadratic cost)
     //double cost = x[0] * x[0] + (x[1] * x[1]); //Zero
-	double cost = (x[0] - 1.0) * (x[0] - 1.0) + (x[1] - 2.0) * (x[1] - 2.0); //Non-zero
-    return cost;
+	//double cost = (x[0] - 1.0) * (x[0] - 1.0) + (x[1] - 2.0) * (x[1] - 2.0); //Non-zero
+	double cost = (x[0] - 2) * (x[0] - 2) + (x[1] - 3) * (x[1] - 3) + 3; //Non-zero
+    
+	return cost;
 }
     // Initial guess for the optimization variables
     double x[2] = {0.0, 0.0};
 	
     // Create an nlopt optimizer object
     nlopt_opt opt;
-    opt = nlopt_create(NLOPT_LD_SLSQP, optimizationDataInput->n); // SLSQP algorithm
+    opt = nlopt_create(NLOPT_LN_COBYLA, optimizationDataInput->n); // SLSQP algorithm
     
     // Set the objective function and its parameters
     nlopt_set_min_objective(opt, objective, NULL);
@@ -107,18 +109,23 @@ double objective(unsigned n, const double *x, double *grad, void *data)
     double ub[2] = {optimizationDataInput->xlUb, optimizationDataInput->x2Ub};
     nlopt_set_upper_bounds(opt, ub);
     
-    // Set the termination tolerance
+	// Set the termination tolerance
     nlopt_set_ftol_rel(opt, optimizationDataInput->tol);
     
     // Set the maximum number of iterations
     nlopt_set_maxeval(opt, optimizationDataInput->max_iter);
     
-    // Optimize the objective function
-    nlopt_optimize(opt, x, &optimizationDataInput->min_cost);
-    
-    // Print the optimized variables and minimum cost
-    printf("Optimized variables: x1 = %lf, x2 = %lf\n", x[0], x[1]);
-    printf("Minimum cost: %lf\n", optimizationDataInput->min_cost);
+    // Optimize the objective function	
+	if (nlopt_optimize(opt, x, &optimizationDataInput->min_cost) < 0) {
+		printf("NLOPT failed: %s\n", nlopt_get_errmsg(opt));
+	} else {
+		// Print the optimized variables and minimum objective value
+		printf("Optimized variables:\n");
+		for (unsigned i = 0; i < optimizationDataInput->n; i++) {
+			printf("x[%u] = %lf\n", i, x[i]);
+		}
+		printf("Minimum objective value: %lf\n", optimizationDataInput->min_cost);
+	}
 		
 	//Passing returnvalues back to Modelica
 	optimizationDataOutput->x1 = x[0];
