@@ -1,7 +1,7 @@
 # Advanced Control Implementation with Modelica
 
 This repository contains the code and resources for my master's thesis in industrial IT and automation at the University of South East Norway, focusing on advanced control implementations in the field of Modelica. The work presented here includes both OpenModelica and Python code developed to study and implement innovative control strategies.
-
+<!--
 ## Table of Contents
 - [Introduction](#introduction)
 - [Repository Structure](#repository-structure)
@@ -11,19 +11,21 @@ This repository contains the code and resources for my master's thesis in indust
 - [Contributing](#contributing)
 - [License](#license)
 
-<!--
 ## Introduction
 
-[Provide a brief overview of your thesis topic and the objectives of your research.]
-
+The objective was to explore possibilities for linking a Modelica model to external control strategies, either through using Modelica external objects or utilizing Functional Mock-up Units (FMUs), and conducting simulations in Python.
+-->
 ## Repository Structure
 
-- `/MPC/`: Contains OpenModelica code for [describe the purpose of this code].
-- `/PythonSourceCode/`: Contains Python code for [describe the purpose of this code].
-- `/data/`: Contains datasets and simulation results used in the thesis.
-- `/docs/`: Additional documentation or reports related to the research.
-- `/figures/`: Plots, graphs, and figures used in your thesis or presentations.
+- `/MPC/`: Contains Modelica source code organized in a package.
+- `/PythonSourceCode/AirHeaterFMUEvaluation/`: Contains Python code for evaluating the performance/validation of Air Heater FMUs.
+- `/PythonSourceCode/AirHeaterFMUwithPID/`: Contains a Python implementation of a PI controller using an FMU of an air heater.
+- `/PythonSourceCode/AirHeaterFMUwithMPC/`: Contains a Python implementation of an MPC controller using an FMU of an air heater.
+- `/PythonSourceCode/AirHeaterModelEvaluation/`: Contains a Python implementation where four different FMUs are imported and evaluated for performance and accuracy.
+- `/PythonSourceCode/AirHeaterStateSpace/`: Contains a Python implementation where different state-space models are built based on a Laplace model of the air heater.
+- `/PythonSourceCode/OptimizationScripts/`: Contains a Python implementation to generate plots for the report, illustrating optimization in Python as a reference to source code implemented in C.
 
+<!--
 ## Getting Started
 
 [Explain how to set up and run the code provided in your repository. Include any dependencies that need to be installed and provide clear instructions for running simulations or experiments.]
@@ -45,10 +47,10 @@ This repository contains the code and resources for my master's thesis in indust
 [Specify the license for your code and any terms or conditions for its use.]
 
 ---
+-->
+
 
 Thank you for visiting my repository! If you have any questions or feedback, please feel free to contact me.
-
--->
 
 Carl Magnus Bøe
 
