@@ -48,6 +48,8 @@ The objective was to explore possibilities for linking a Modelica model to exter
 
 ---
 -->
+
+
 Thank you for visiting my repository! If you have any questions or feedback, please feel free to contact me.
 
 Carl Magnus Bøe
