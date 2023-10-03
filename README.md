@@ -1,7 +1,7 @@
 # Advanced Control Implementation with Modelica
 
 This repository contains the code and resources for my master's thesis in industrial IT and automation at the University of South East Norway, focusing on advanced control implementations in the field of Modelica. The work presented here includes both OpenModelica and Python code developed to study and implement innovative control strategies.
-
+<!--
 ## Table of Contents
 - [Introduction](#introduction)
 - [Repository Structure](#repository-structure)
@@ -11,11 +11,10 @@ This repository contains the code and resources for my master's thesis in indust
 - [Contributing](#contributing)
 - [License](#license)
 
-
 ## Introduction
 
 The objective was to explore possibilities for linking a Modelica model to external control strategies, either through using Modelica external objects or utilizing Functional Mock-up Units (FMUs), and conducting simulations in Python.
-
+-->
 ## Repository Structure
 
 - `/MPC/`: Contains Modelica source code organized in a package.
