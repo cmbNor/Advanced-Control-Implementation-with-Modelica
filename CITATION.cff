@@ -1,0 +1,33 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Advanced Control Implementations with Modelica
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Carl Magnus
+    family-names: Bøe
+    email: carl.m.boe@gmail.com
+repository-code: >-
+  https://github.com/cmbNor/Advanced-Control-Implementation-with-Modelica
+url: >-
+  https://github.com/cmbNor/Advanced-Control-Implementation-with-Modelica
+abstract: >-
+  This repository contains the code and resources for my
+  master's thesis in industrial IT and automation at the
+  University of South East Norway, focusing on advanced
+  control implementations in the field of Modelica. The work
+  presented here includes both OpenModelica and Python code
+  developed to study and implement innovative control
+  strategies. 
+keywords:
+  - Modelica
+  - MPC
+  - Advanced control
+license: MIT
+commit: 1b73e286d9f81d5e00eee3484e5da4214529b885
+version: '1'
+date-released: '2023-12-06'
